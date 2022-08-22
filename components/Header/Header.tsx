@@ -3,9 +3,11 @@ import React, {useState, useEffect} from 'react';
 import {Image, Link} from '@common'
 import {BellIcon, SearchIcon} from "@heroicons/react/solid";
 import {loader} from "@utils";
+import { useAuth } from '@hooks';
 
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
+    const {logout} = useAuth()
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 0)
@@ -62,6 +64,7 @@ export const Header = () => {
                 <Link href={'/account'}>
                     <a className={'relative w-6 h-6'}>
                         <Image
+                            onClick={logout}
                             loader={loader}
                             src={'https://rb.gy/g1pwyx'}
                             layout={'fill'}

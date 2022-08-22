@@ -26,7 +26,8 @@
       "@utils": ["utils"],
       "@theme": ["theme"],
       "@types": ["types"],
-      "@constants": ["constants"]
+      "@constants": ["constants"],
+      "@atoms": ["atoms"]
     },
     "sourceMap": true,
     "inlineSources": true,

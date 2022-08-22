@@ -1,9 +1,13 @@
 import type {NextPage, GetServerSideProps} from 'next'
 import Head from "next/head";
-import {Banner, Header, Row} from "@components";
+import {useRouter} from 'next/router'
+import {Banner, Header, Modal, Row} from "@components";
 
 import {requests} from '@utils'
 import {HomeResponseType} from "@types";
+import {useAuth} from "@hooks";
+import {useRecoilState} from "recoil";
+import {modalState} from "@atoms";
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const [
@@ -53,6 +57,11 @@ const Home: NextPage<HomeResponseType> = (
         documentaries
     }) => {
 
+    const {user} = useAuth()
+    const [open, setOpen] = useRecoilState(modalState)
+
+    if (!user) return <div></div>
+
     return (
         <div className={'relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]'}>
             <Head>
@@ -79,7 +88,7 @@ const Home: NextPage<HomeResponseType> = (
                 </section>
             </main>
 
-            {/*Modal*/}
+            {open && <Modal/>}
         </div>
     )
 }

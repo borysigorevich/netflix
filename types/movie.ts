@@ -29,3 +29,17 @@ export type HomeResponseType = {
     romanceMovies: MovieType[]
     documentaries: MovieType[]
 }
+
+export type Element = {
+    type: 'Bloopers'
+        | 'Featurette'
+        | 'Behind the Scenes'
+        | 'Clip'
+        | 'Trailer'
+        | 'Teaser'
+}
+
+export type GenreType = {
+    id: number
+    name: string
+}

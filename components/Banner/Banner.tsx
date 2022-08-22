@@ -6,6 +6,8 @@ import {baseUrl} from '@constants'
 
 import {FaPlay} from 'react-icons/fa'
 import {InformationCircleIcon} from "@heroicons/react/solid";
+import {useRecoilState} from "recoil";
+import {modalState, movieState} from "@atoms";
 
 type BannerProps = {
     netflixOriginals: MovieType[]
@@ -13,11 +15,18 @@ type BannerProps = {
 
 export const Banner = ({netflixOriginals}: BannerProps) => {
     const [movie, setMovie] = useState<MovieType | null>(null)
+    const [open, setOpen] = useRecoilState(modalState)
+    const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
 
     useEffect(() => {
         setMovie(netflixOriginals[Math.floor(Math.random() * netflixOriginals.length)])
     }, [netflixOriginals])
 
+
+    const handleOpen = () => {
+        setOpen(true)
+        setCurrentMovie(movie)
+    }
 
     return (
         <div className={'flex flex-col gap-2 py-16 md:gap-4 lg:h-[65vh] lg:pb-12 lg:justify-end'}>
@@ -41,7 +50,8 @@ export const Banner = ({netflixOriginals}: BannerProps) => {
                 <button className={'bannerButton bg-white text-black'}><FaPlay
                     className={'h-4 w-4 text-black md:h-7 md:w-7'}/>Play
                 </button>
-                <button className={'bannerButton bg-[gray]/70'}>More Info <InformationCircleIcon className={'w-5 h-5 md:w-8 md:h-8'}/></button>
+                <button className={'bannerButton bg-[gray]/70'} onClick={handleOpen}>More Info <InformationCircleIcon
+                    className={'w-5 h-5 md:w-8 md:h-8'}/></button>
             </div>
         </div>
     );

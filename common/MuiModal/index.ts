@@ -1,0 +1,1 @@
+export {default as MuiModal} from '@mui/material/Modal'
