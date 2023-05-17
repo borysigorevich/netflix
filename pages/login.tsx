@@ -44,7 +44,7 @@ const Login = () => {
 
             <Image
                 className={'-z-10 opacity-60 !hidden sm:!inline'}
-                src={'https://rb.gy/p2hphi'}
+                src={'/netflix.jpg'}
                 layout={'fill'}
                 objectFit={'cover'}
             />
